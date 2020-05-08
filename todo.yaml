@@ -1,0 +1,141 @@
+---
+openapi: 3.0.2
+info:
+  title: todo
+  version: 1.0.0
+  description: Todo List
+  contact:
+    name: Jamie Land
+    url: http://redhat.com
+    email: jland@redhat.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/v1
+  description: Localhost
+paths:
+  /todos:
+    summary: Path used to manage the list of todos.
+    description: The REST endpoint/path used to list and create zero or more `todo`
+      entities.  This path contains a `GET` and `POST` operation to perform the list
+      and create tasks, respectively.
+    get:
+      tags:
+      - todo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/todo'
+          description: Successful response - returns an array of `todo` entities.
+      operationId: getTodos
+      summary: List All todos
+      description: Gets a list of all `todo` entities.
+    post:
+      requestBody:
+        description: A new `todo` to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/todo'
+        required: true
+      tags:
+      - todo
+      responses:
+        "201":
+          description: Successful response.
+      operationId: createTodo
+      summary: Create a todo
+      description: Creates a new instance of a `todo`.
+    parameters:
+    - name: completed
+      description: Show completed/uncompleted todo items
+      schema:
+        type: boolean
+      in: query
+  /todos/{todoId}:
+    summary: Path used to manage a single todo.
+    description: The REST endpoint/path used to get, update, and delete single instances
+      of an `todo`.  This path contains `GET`, `PUT`, and `DELETE` operations used
+      to perform the get, update, and delete tasks, respectively.
+    get:
+      tags:
+      - todo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/todo'
+          description: Successful response - returns a single `todo`.
+        "404":
+          description: Todo item not found
+      operationId: getTodo
+      summary: Get a todo
+      description: Gets the details of a single instance of a `todo`.
+    put:
+      requestBody:
+        description: Updated `todo` information.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/todo'
+        required: true
+      tags:
+      - todo
+      responses:
+        "202":
+          description: Successful response.
+        "404":
+          description: Todo item not found
+      operationId: updateTodo
+      summary: Update a todo
+      description: Updates an existing `todo`.
+    delete:
+      tags:
+      - todo
+      responses:
+        "204":
+          description: Successful response.
+        "404":
+          description: Todo item not found
+      operationId: deleteTodo
+      summary: Delete a todo
+      description: Deletes an existing `todo`.
+    parameters:
+    - name: todoId
+      description: A unique identifier for a `todo`.
+      schema:
+        type: string
+      in: path
+      required: true
+components:
+  schemas:
+    todo:
+      title: Todo
+      description: Todo List item
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        date:
+          format: date-time
+          type: string
+        completed:
+          description: Is Completed
+          type: boolean
+      example:
+        value:
+          name: Todo item
+          description: Description of item
+          date: 2018-05-06T18:25:43.511Z
+          completed: true
+tags:
+- name: todo
+  description: 'Todo '
