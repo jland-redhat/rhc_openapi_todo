@@ -35,6 +35,12 @@ paths:
       operationId: getTodos
       summary: List All todos
       description: Gets a list of all `todo` entities.
+      parameters:
+      - name: completed
+        description: Show completed/uncompleted todo items
+        schema:
+          type: boolean
+        in: query
     post:
       requestBody:
         description: A new `todo` to be created.
@@ -51,12 +57,6 @@ paths:
       operationId: createTodo
       summary: Create a todo
       description: Creates a new instance of a `todo`.
-    parameters:
-    - name: completed
-      description: Show completed/uncompleted todo items
-      schema:
-        type: boolean
-      in: query
   /todos/{todoId}:
     summary: Path used to manage a single todo.
     description: The REST endpoint/path used to get, update, and delete single instances
@@ -110,7 +110,7 @@ paths:
     - name: todoId
       description: A unique identifier for a `todo`.
       schema:
-        type: string
+        type: integer
       in: path
       required: true
 components:
@@ -120,6 +120,8 @@ components:
       description: Todo List item
       type: object
       properties:
+        id:
+          type: integer
         name:
           type: string
         description:
