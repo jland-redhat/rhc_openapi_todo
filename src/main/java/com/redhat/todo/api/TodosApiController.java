@@ -1,9 +1,12 @@
 package com.redhat.todo.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -13,11 +16,14 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.redhat.todo.model.Todo;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-14T16:03:13.202-04:00[America/New_York]")
+import com.redhat.todo.repository.TodoRepository;
 
 @Controller
 @RequestMapping("${openapi.todo.base-path:/v1}")
 public class TodosApiController implements TodosApi {
+
+    @Autowired
+    TodoRepository todoRepository;
 
     private final NativeWebRequest request;
 
@@ -33,12 +39,33 @@ public class TodosApiController implements TodosApi {
 
     @Override
     public ResponseEntity<List<Todo>> getTodos(@Valid Boolean completed) {
-        Todo responseItem = new Todo();
-        responseItem.setName("My First Todo Item");
-        responseItem.setDescription("Making the '/todos' path work");
-        responseItem.setDate(OffsetDateTime.now().plusDays(1));
-        responseItem.setCompleted(false);
-        return ResponseEntity.ok(Arrays.asList(responseItem));
+        return ResponseEntity.ok(todoRepository.getByCompleted(completed));
     }
 
+    @Override
+    public ResponseEntity<Todo> getTodo(Integer todoId) {
+        return ResponseEntity.ok(todoRepository.findById(todoId)
+            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+    }
+
+    @Override
+    public ResponseEntity<Void> createTodo(@Valid Todo todo) {
+        todoRepository.save(todo);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @Override
+    public ResponseEntity<Void> updateTodo(Integer todoId, @Valid Todo todo) {
+        //TODO: Add validation todo item exist and throw a 404 if missing
+        todo.setId(todoId);
+        todoRepository.save(todo);
+        return TodosApi.super.updateTodo(todoId, todo);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteTodo(Integer todoId) {
+        //TODO: Add validation todo item exist and throw a 404 if missing
+        todoRepository.deleteById(todoId);
+        return TodosApi.super.deleteTodo(todoId);
+    }
 }

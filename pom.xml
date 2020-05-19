@@ -21,7 +21,7 @@
         <plugins>
             <!-- Regenerate our generated source files -->
             <plugin>
-                <groupId>org.openapitools</groupId>
+                <groupId>org.openapitools</groupId> 
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>4.3.1</version>
                 <executions>
@@ -118,6 +118,17 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+        </dependency>
+    <!-- JPA Dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.3.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
         </dependency>
     </dependencies>
 </project>

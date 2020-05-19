@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.redhat.todo", "com.redhat.todo.api" , "com.redhat.todo.config"})
+@ComponentScan(basePackages = {"com.redhat.todo", "com.redhat.todo.api" , "com.redhat.todo.config", "com.redhat.todo.repository"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     @Override
