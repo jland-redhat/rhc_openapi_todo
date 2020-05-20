@@ -116,11 +116,16 @@ paths:
 components:
   schemas:
     todo:
+      x-java-class-annotation:
+        - "@javax.persistence.Entity"
       title: Todo
       description: Todo List item
       type: object
       properties:
         id:
+          x-java-field-annotation:
+            - "@javax.persistence.Id"
+            - "@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)"
           type: integer
         name:
           type: string

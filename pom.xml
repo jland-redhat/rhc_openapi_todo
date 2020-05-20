@@ -21,10 +21,10 @@
         <plugins>
             <!-- Regenerate our generated source files -->
             <plugin>
-                <groupId>org.openapitools</groupId> 
+                <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>4.3.1</version>
-                <executions>
+                <executions> 
                     <execution>
                         <phase>generate-sources</phase>
                         <goals>
@@ -33,8 +33,9 @@
                         <configuration>
                             <generatorName>spring</generatorName>
                             <inputSpec>todo.yaml</inputSpec>
-                            <library>spring-boot</library>
+                            <library>spring-boot</library> 
                             <output>${project.basedir}</output>
+                            <templateDirectory>${project.basedir}/templates</templateDirectory>
                             <configOptions>
                                 <serializableModel>true</serializableModel>
                                 <artifactId>${project.artifactId}</artifactId>
