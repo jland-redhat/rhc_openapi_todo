@@ -1,8 +1,10 @@
 package com.redhat.todo.api;
 
+import io.swagger.annotations.ApiParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import java.time.OffsetDateTime;
@@ -13,7 +15,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import com.redhat.todo.model.Todo;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2020-05-14T16:03:13.202-04:00[America/New_York]")
 
 @Controller
 @RequestMapping("${openapi.todo.base-path:/v1}")
@@ -32,7 +33,8 @@ public class TodosApiController implements TodosApi {
     }
 
     @Override
-    public ResponseEntity<List<Todo>> getTodos(@Valid Boolean completed) {
+    //Note: Parameter level annotaions are required when overriding api methods
+    public ResponseEntity<List<Todo>> getTodos(@ApiParam(value = "Show completed/uncompleted todo items") @Valid @RequestParam(value = "completed", required = false) Boolean completed) {
         Todo responseItem = new Todo();
         responseItem.setName("My First Todo Item");
         responseItem.setDescription("Making the '/todos' path work");

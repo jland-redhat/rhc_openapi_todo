@@ -23,6 +23,12 @@ paths:
     get:
       tags:
       - todo
+      parameters:
+      - name: completed
+        description: Show completed/uncompleted todo items
+        schema:
+          type: boolean
+        in: query
       responses:
         "200":
           content:
@@ -35,12 +41,6 @@ paths:
       operationId: getTodos
       summary: List All todos
       description: Gets a list of all `todo` entities.
-      parameters:
-      - name: completed
-        description: Show completed/uncompleted todo items
-        schema:
-          type: boolean
-        in: query
     post:
       requestBody:
         description: A new `todo` to be created.
