@@ -23,6 +23,12 @@ paths:
     get:
       tags:
       - todo
+      parameters:
+      - name: completed
+        description: Show completed/uncompleted todo items
+        schema:
+          type: boolean
+        in: query
       responses:
         "200":
           content:
@@ -51,12 +57,6 @@ paths:
       operationId: createTodo
       summary: Create a todo
       description: Creates a new instance of a `todo`.
-    parameters:
-    - name: completed
-      description: Show completed/uncompleted todo items
-      schema:
-        type: boolean
-      in: query
   /todos/{todoId}:
     summary: Path used to manage a single todo.
     description: The REST endpoint/path used to get, update, and delete single instances
@@ -110,16 +110,23 @@ paths:
     - name: todoId
       description: A unique identifier for a `todo`.
       schema:
-        type: string
+        type: integer
       in: path
       required: true
 components:
   schemas:
     todo:
+      x-java-class-annotation:
+        - "@javax.persistence.Entity"
       title: Todo
       description: Todo List item
       type: object
       properties:
+        id:
+          x-java-field-annotation:
+            - "@javax.persistence.Id"
+            - "@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)"
+          type: integer
         name:
           type: string
         description:

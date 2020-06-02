@@ -24,7 +24,7 @@
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
                 <version>4.3.1</version>
-                <executions>
+                <executions> 
                     <execution>
                         <phase>generate-sources</phase>
                         <goals>
@@ -32,9 +32,10 @@
                         </goals>
                         <configuration>
                             <generatorName>spring</generatorName>
-                            <inputSpec>https://raw.githubusercontent.com/jland-redhat/rhc_openapi_todo/todo_enhanced/todo.yaml</inputSpec>
-                            <library>spring-boot</library>
+                            <inputSpec>todo.yaml</inputSpec>
+                            <library>spring-boot</library> 
                             <output>${project.basedir}</output>
+                            <templateDirectory>${project.basedir}/templates</templateDirectory>
                             <configOptions>
                                 <serializableModel>true</serializableModel>
                                 <artifactId>${project.artifactId}</artifactId>
@@ -118,6 +119,17 @@
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
+        </dependency>
+    <!-- JPA Dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.3.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
         </dependency>
     </dependencies>
 </project>

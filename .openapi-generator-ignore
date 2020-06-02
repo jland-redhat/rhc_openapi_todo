@@ -34,3 +34,5 @@ README.md
 #Ignore Properties file 
 **/*.properties
 
+#Ignore Our Springboot Application Class
+**/OpenAPI2SpringBoot.java
