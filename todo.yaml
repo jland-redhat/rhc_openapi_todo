@@ -143,6 +143,19 @@ components:
           description: Description of item
           date: 2018-05-06T18:25:43.511Z
           completed: true
+  securitySchemes:
+    SecuritySchema:
+      flows:
+        authorizationCode:
+          authorizationUrl: 'http://localhost:8081/auth/realms/testRealm/protocol/openid-connect/auth'
+          tokenUrl: 'http://localhost:8081/auth/realms/testRealm/protocol/openid-connect/token'
+          scopes:
+            email: User's Email Address
+      type: oauth2
+security:
+  -
+    SecuritySchema:
+      - email
 tags:
 - name: todo
   description: 'Todo '

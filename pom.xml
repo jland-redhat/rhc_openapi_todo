@@ -131,5 +131,11 @@
             <artifactId>h2</artifactId>
             <version>1.4.200</version>
         </dependency>
+    <!--Keycloak Dependency-->
+    <dependency>
+        <groupId>org.keycloak</groupId>
+        <artifactId>keycloak-spring-boot-starter</artifactId>
+        <version>10.0.1</version>
+    </dependency>
     </dependencies>
 </project>

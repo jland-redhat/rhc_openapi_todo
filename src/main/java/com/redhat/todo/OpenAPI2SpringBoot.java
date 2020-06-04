@@ -1,7 +1,10 @@
 package com.redhat.todo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openapitools.jackson.nullable.JsonNullableModule;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.redhat.todo", "com.redhat.todo.api" , "com.redhat.todo.config", "com.redhat.todo.repository"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
+
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -35,6 +39,14 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
         }
 
     }
+
+    @Bean
+    public ObjectMapper mapper() {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        return mapper;
+    }
+
 
     @Bean
     public WebMvcConfigurer webConfigurer() {
