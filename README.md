@@ -16,19 +16,3 @@ You can view the api documentation in swagger-ui by pointing to
 http://localhost:8080/
 
 Change default port value in application.properties
-
-## Building
-
-The openapi-generator-maven-plugin can be used to regenerate the files 
-
-#### Build (Includes regeneration)
-
-```
-mvn clean install
-```
-
-#### Generate Resources
-
-```
-mvn generate resources
-```
