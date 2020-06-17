@@ -1,5 +1,7 @@
 package com.redhat.todo;
 
+import javax.annotation.PostConstruct;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @ComponentScan(basePackages = {"com.redhat.todo", "com.redhat.todo.api" , "com.redhat.todo.config", "com.redhat.todo.repository"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 
+    @Autowired
+    ObjectMapper mapper;
 
     @Override
     public void run(String... arg0) throws Exception {
@@ -40,9 +44,8 @@ public class OpenAPI2SpringBoot implements CommandLineRunner {
 
     }
 
-    @Bean
+    @PostConstruct
     public ObjectMapper mapper() {
-        ObjectMapper mapper = new ObjectMapper();
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         return mapper;
     }
