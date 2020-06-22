@@ -143,6 +143,8 @@ components:
           description: Description of item
           date: 2018-05-06T18:25:43.511Z
           completed: true
+  #TODO: Add Security Scheme
+#TODO: Add Security Requirements
 tags:
 - name: todo
   description: 'Todo '
