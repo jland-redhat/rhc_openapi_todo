@@ -35,6 +35,7 @@
                             <inputSpec>todo.yaml</inputSpec>
                             <library>spring-boot</library>
                             <output>${project.basedir}</output>
+                            <!-- TODO: Add template directory -->
                             <configOptions>
                                 <serializableModel>true</serializableModel>
                                 <artifactId>${project.artifactId}</artifactId>
