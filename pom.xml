@@ -35,12 +35,12 @@
                             <inputSpec>todo.yaml</inputSpec>
                             <library>spring-boot</library>
                             <output>${project.basedir}</output>
-                            <configOptions>
+                            <!-- TODO: Add template directory -->
+			    <configOptions>
                                 <serializableModel>true</serializableModel>
                                 <artifactId>${project.artifactId}</artifactId>
                                 <groupId>${project.groupId}</groupId>
                                 <version>${project.version}</version>
-                                <!-- TODO: Add template directory -->
                                 <dateLibrary>java8</dateLibrary>
                                 <sourceFolder>src/main/gen</sourceFolder>
                                 <basePackage>com.redhat.todo</basePackage>
