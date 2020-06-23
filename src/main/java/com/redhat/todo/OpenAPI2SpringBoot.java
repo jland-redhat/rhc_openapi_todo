@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+//TODO: Add 'com.redhat.todo.repository' to component scan
 @ComponentScan(basePackages = {"com.redhat.todo", "com.redhat.todo.api" , "com.redhat.todo.config"})
 public class OpenAPI2SpringBoot implements CommandLineRunner {
 

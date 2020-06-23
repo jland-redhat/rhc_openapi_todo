@@ -40,6 +40,7 @@
                                 <artifactId>${project.artifactId}</artifactId>
                                 <groupId>${project.groupId}</groupId>
                                 <version>${project.version}</version>
+                                <!-- TODO: Add template directory -->
                                 <dateLibrary>java8</dateLibrary>
                                 <sourceFolder>src/main/gen</sourceFolder>
                                 <basePackage>com.redhat.todo</basePackage>
@@ -85,6 +86,7 @@
         </plugins>
     </build>
     <dependencies>
+        <!-- TODO: Add Spring Data JPA and h2 database dependencies  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>

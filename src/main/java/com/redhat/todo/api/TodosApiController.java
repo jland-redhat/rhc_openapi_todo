@@ -22,6 +22,8 @@ public class TodosApiController implements TodosApi {
 
     private final NativeWebRequest request;
 
+    //TODO: Add TodoRepository to controller
+
     @org.springframework.beans.factory.annotation.Autowired
     public TodosApiController(NativeWebRequest request) {
         this.request = request;
@@ -32,15 +34,14 @@ public class TodosApiController implements TodosApi {
         return Optional.ofNullable(request);
     }
 
-    @Override
-    //Note: Parameter level annotaions are required when overriding api methods
-    public ResponseEntity<List<Todo>> getTodos(@ApiParam(value = "Show completed/uncompleted todo items") @Valid @RequestParam(value = "completed", required = false) Boolean completed) {
-        Todo responseItem = new Todo();
-        responseItem.setName("My First Todo Item");
-        responseItem.setDescription("Making the '/todos' path work");
-        responseItem.setDate(OffsetDateTime.now().plusDays(1));
-        responseItem.setCompleted(false);
-        return ResponseEntity.ok(Arrays.asList(responseItem));
-    }
+    //TODO: Override and Implement GET method getTodo(Integer todoId)
+
+    //TODO: (Optional) Override and Implement getTodos(Boolean completed)
+    
+    //TODO: (Optional) Override and Implement createTodo(Todo todo)
+
+    //TODO: (Optional) Override and Implement updateTodo(Todo todo)
+
+    //TODO: (Optional) Override and Implement deleteTodo(Integer todoId)
 
 }
