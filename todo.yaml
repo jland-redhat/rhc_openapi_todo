@@ -119,13 +119,10 @@ components:
       title: Todo
       description: Todo List item
       type: object
-      x-java-class-annotation:
-        - "@javax.persistence.Entity"
+      # TODO: Add x-java-class-annotation
       properties:
         id:
-          x-java-field-annotation:
-            - "@javax.persistence.Id"
-            - "@javax.persistence.GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)"
+          # TODO: Add x-java-field-annotation
           type: integer
         name:
           type: string
