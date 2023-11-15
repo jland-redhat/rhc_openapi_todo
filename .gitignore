@@ -1,0 +1,7 @@
+target
+
+src/main/gen
+
+.vscode
+
+.openapi-generator

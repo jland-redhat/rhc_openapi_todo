@@ -32,3 +32,23 @@ mvn clean install
 ```
 mvn generate resources
 ```
+
+
+## Demo Notes
+
+Change Java Version:
+
+```sh
+sudo alternatives --config java
+```
+
+
+Run:
+
+```sh
+mvn8 spring-boot:run
+```
+
+Navigate to:
+
+http://localhost:8080/swagger-ui.html
